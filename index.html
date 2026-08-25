@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Geleceği Yönet | Eğitim Bilgilendirme — Kampüs Garanti BBVA</title>
+<style>
+  :root{
+    --navy:#004481;
+    --blue:#1973B8;
+    --teal:#2DCCCD;
+    --dark:#072146;
+    --teal-soft:#E6FAFA;
+    --blue-soft:#EAF3FB;
+    --ink:#0B2B4C;
+    --grey:#5B7186;
+    --line:#D8E4EE;
+    --bg:#F6F9FC;
+    --white:#FFFFFF;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:"Segoe UI", Arial, "Helvetica Neue", sans-serif;
+    color:var(--ink);
+    background:var(--bg);
+    line-height:1.6;
+    font-size:16px;
+  }
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px;}
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:sticky;top:0;z-index:50;
+    background:var(--dark);
+    box-shadow:0 2px 12px rgba(7,33,70,.25);
+  }
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:58px;}
+  .brand{color:#fff;font-weight:700;letter-spacing:.02em;font-size:.95rem;}
+  .brand span{color:var(--teal);font-weight:400;}
+  .navlinks{display:flex;gap:4px;flex-wrap:wrap;}
+  .navlinks a{
+    color:#CFE3F5;text-decoration:none;font-size:.82rem;
+    padding:6px 12px;border-radius:999px;transition:background .2s,color .2s;
+  }
+  .navlinks a:hover,.navlinks a:focus-visible{background:rgba(45,204,205,.18);color:#fff;outline:none;}
+  .navlinks a:focus-visible{box-shadow:0 0 0 2px var(--teal);}
+
+  /* ---------- HERO ---------- */
+  header{
+    background:linear-gradient(150deg,var(--dark) 0%,var(--navy) 62%,#0A5DA6 100%);
+    color:#fff;
+    padding:72px 0 0;
+    overflow:hidden;
+    position:relative;
+  }
+  header::after{
+    content:"";position:absolute;right:-140px;top:-140px;width:420px;height:420px;
+    border-radius:50%;border:60px solid rgba(45,204,205,.10);
+    pointer-events:none;
+  }
+  .eyebrow{
+    display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--teal);
+    border:1px solid rgba(45,204,205,.5);border-radius:999px;
+    padding:6px 16px;margin-bottom:22px;
+  }
+  h1{font-size:clamp(2.2rem,5.2vw,3.6rem);line-height:1.08;font-weight:800;letter-spacing:-.01em;}
+  h1 em{font-style:normal;color:var(--teal);}
+  .hero-sub{
+    margin-top:18px;max-width:660px;font-size:1.05rem;color:#D6E6F5;
+  }
+  .hero-meta{
+    display:flex;flex-wrap:wrap;gap:12px;margin:32px 0 0;
+  }
+  .chip{
+    background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.22);
+    border-radius:10px;padding:10px 16px;font-size:.85rem;color:#fff;
+    display:flex;flex-direction:column;gap:2px;min-width:140px;
+  }
+  .chip b{font-size:.95rem;}
+  .chip small{color:#A9C6E2;font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;}
+  .quote{
+    margin:44px 0 0;background:rgba(7,33,70,.55);border-left:4px solid var(--teal);
+    padding:24px 28px;border-radius:0 14px 14px 0;max-width:780px;
+    font-size:1.02rem;color:#E8F2FB;font-style:italic;
+  }
+  .hero-bottom{
+    margin-top:56px;background:rgba(255,255,255,.06);
+    border-top:1px solid rgba(255,255,255,.14);
+    padding:18px 0;
+  }
+  .hero-bottom .wrap{display:flex;flex-wrap:wrap;gap:8px 28px;font-size:.82rem;color:#BBD5EC;}
+  .hero-bottom b{color:#fff;}
+
+  /* ---------- SECTIONS ---------- */
+  section{padding:72px 0;}
+  section.alt{background:var(--white);}
+  .sec-label{
+    font-size:.72rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--blue);margin-bottom:10px;
+  }
+  h2{font-size:clamp(1.5rem,3vw,2.1rem);color:var(--navy);font-weight:800;margin-bottom:14px;letter-spacing:-.01em;}
+  .lead{max-width:740px;color:var(--grey);margin-bottom:36px;}
+
+  /* value cards */
+  .grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px;}
+  .card{
+    background:var(--white);border:1px solid var(--line);border-radius:14px;
+    padding:24px;transition:transform .2s, box-shadow .2s;
+  }
+  section.alt .card{background:var(--bg);}
+  .card:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(0,68,129,.10);}
+  .card h3{color:var(--navy);font-size:1rem;margin-bottom:8px;}
+  .card p{font-size:.9rem;color:var(--grey);}
+  .stat{font-size:2rem;font-weight:800;color:var(--blue);line-height:1;margin-bottom:8px;}
+  .stat .tl{color:var(--teal);}
+
+  /* ---------- STORY / ELIF ---------- */
+  .story{display:grid;grid-template-columns:1.1fr 1fr;gap:28px;align-items:start;}
+  .persona{
+    background:var(--dark);color:#fff;border-radius:16px;padding:30px;
+  }
+  .persona .avatar{
+    width:58px;height:58px;border-radius:50%;background:var(--teal);color:var(--dark);
+    display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.5rem;
+    margin-bottom:16px;
+  }
+  .persona h3{font-size:1.3rem;margin-bottom:4px;}
+  .persona .role{color:var(--teal);font-size:.85rem;margin-bottom:16px;}
+  .persona p{font-size:.9rem;color:#CFE0F1;margin-bottom:14px;}
+  .drawer{
+    background:rgba(45,204,205,.10);border:1px solid rgba(45,204,205,.35);
+    border-radius:12px;padding:16px 18px;margin-top:6px;
+  }
+  .drawer h4{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:10px;}
+  .drawer li{list-style:none;font-size:.88rem;color:#E6F1FA;padding-left:18px;position:relative;margin-bottom:6px;}
+  .drawer li::before{content:"?";position:absolute;left:0;color:var(--teal);font-weight:700;}
+  .cast{display:flex;flex-direction:column;gap:12px;}
+  .cast-card{
+    background:var(--white);border:1px solid var(--line);border-radius:12px;
+    padding:14px 18px;display:flex;gap:14px;align-items:flex-start;
+  }
+  .cast-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0;margin-top:6px;}
+  .cast-card b{color:var(--navy);font-size:.92rem;}
+  .cast-card p{font-size:.84rem;color:var(--grey);}
+
+  /* ---------- TIMELINE ---------- */
+  .spine-legend{
+    display:flex;flex-wrap:wrap;gap:10px;margin-bottom:36px;
+  }
+  .spine-tag{
+    font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+    padding:8px 16px;border-radius:999px;
+  }
+  .sp1{background:var(--blue-soft);color:var(--navy);}
+  .sp2{background:var(--teal-soft);color:#0B7C7D;}
+  .sp3{background:var(--dark);color:#fff;}
+  .timeline{position:relative;padding-left:34px;}
+  .timeline::before{
+    content:"";position:absolute;left:11px;top:8px;bottom:8px;width:3px;
+    background:linear-gradient(var(--blue) 0%,var(--teal) 100%);border-radius:3px;
+  }
+  .perde{position:relative;margin-bottom:26px;}
+  .perde:last-child{margin-bottom:0;}
+  .perde::before{
+    content:"";position:absolute;left:-31px;top:22px;width:17px;height:17px;border-radius:50%;
+    background:var(--white);border:4px solid var(--blue);
+  }
+  .perde.dene::before{border-color:var(--teal);}
+  .perde.lab::before{border-color:var(--dark);}
+  .perde-card{
+    background:var(--white);border:1px solid var(--line);border-radius:14px;padding:22px 26px;
+  }
+  .perde-top{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:baseline;margin-bottom:8px;}
+  .perde-num{
+    font-size:.72rem;font-weight:800;letter-spacing:.14em;color:var(--blue);text-transform:uppercase;
+  }
+  .perde.dene .perde-num{color:#0B9B9C;}
+  .perde.lab .perde-num{color:var(--dark);}
+  .perde-card h3{color:var(--navy);font-size:1.08rem;}
+  .perde-q{font-style:italic;color:var(--grey);font-size:.9rem;margin-bottom:10px;}
+  .perde-card p{font-size:.9rem;color:var(--ink);margin-bottom:10px;}
+  .out{
+    display:inline-block;background:var(--teal-soft);color:#0B7C7D;
+    font-size:.78rem;font-weight:700;border-radius:8px;padding:6px 12px;
+  }
+  .out::before{content:"→ Çıktı: ";font-weight:800;}
+
+  /* ---------- AGENDA ---------- */
+  .day-tabs{display:flex;gap:10px;margin-bottom:24px;flex-wrap:wrap;}
+  .day-tab{
+    border:1px solid var(--line);background:var(--white);color:var(--navy);
+    font-weight:700;font-size:.9rem;padding:10px 22px;border-radius:999px;cursor:pointer;
+    transition:background .2s,color .2s;
+  }
+  .day-tab.active{background:var(--navy);color:#fff;border-color:var(--navy);}
+  .day-tab:focus-visible{outline:2px solid var(--teal);outline-offset:2px;}
+  .agenda{width:100%;border-collapse:collapse;background:var(--white);border-radius:14px;overflow:hidden;border:1px solid var(--line);}
+  .agenda th{
+    background:var(--navy);color:#fff;text-align:left;font-size:.78rem;
+    letter-spacing:.08em;text-transform:uppercase;padding:12px 16px;
+  }
+  .agenda td{padding:12px 16px;font-size:.88rem;border-top:1px solid var(--line);vertical-align:top;}
+  .agenda td:first-child{white-space:nowrap;color:var(--grey);font-variant-numeric:tabular-nums;}
+  .tag{
+    display:inline-block;font-size:.7rem;font-weight:700;letter-spacing:.06em;
+    border-radius:6px;padding:3px 9px;text-transform:uppercase;
+  }
+  .t-anlatim{background:var(--blue-soft);color:var(--navy);}
+  .t-atolye{background:var(--teal-soft);color:#0B7C7D;}
+  .t-mola{background:#F0F2F5;color:var(--grey);}
+  .t-acilis{background:var(--dark);color:#fff;}
+  .agenda-note{font-size:.82rem;color:var(--grey);margin-top:12px;}
+  .hidden{display:none;}
+
+  /* ---------- PREP ---------- */
+  .prep-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:18px;}
+  .prep{
+    background:var(--white);border:1px solid var(--line);border-left:5px solid var(--teal);
+    border-radius:12px;padding:24px;
+  }
+  section.alt .prep{background:var(--bg);}
+  .prep h3{color:var(--navy);font-size:1rem;margin-bottom:10px;}
+  .prep ol,.prep ul{padding-left:20px;}
+  .prep li{font-size:.88rem;margin-bottom:10px;color:var(--ink);}
+  .prep li b{color:var(--navy);}
+  .prep .mini{font-size:.78rem;color:var(--grey);}
+  .prep a{color:var(--blue);word-break:break-all;}
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    background:var(--dark);color:#B9D2E8;padding:52px 0 40px;text-align:center;
+  }
+  footer .closing{
+    color:#fff;font-size:1.15rem;font-weight:700;max-width:680px;margin:0 auto 14px;
+  }
+  footer .sig{color:var(--teal);font-size:.9rem;margin-top:18px;}
+  footer .fine{font-size:.75rem;margin-top:26px;color:#7E9DBC;}
+
+  @media(max-width:760px){
+    .story{grid-template-columns:1fr;}
+    .navlinks{display:none;}
+    section{padding:52px 0;}
+    .agenda td:nth-child(4){display:none;}
+    .agenda th:nth-child(4){display:none;}
+  }
+  @media(prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    .card:hover{transform:none;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand">Kampüs Garanti BBVA <span>× MCT</span></div>
+    <div class="navlinks">
+      <a href="#neden">Neden Bu Program</a>
+      <a href="#hikaye">Hikâyemiz</a>
+      <a href="#yolculuk">6 Perde</a>
+      <a href="#akis">Akış</a>
+      <a href="#hazirlik">Hazırlık</a>
+      <a href="#kazanim">Kazanımlar</a>
+    </div>
+  </div>
+</nav>
+
+<header>
+  <div class="wrap">
+    <span class="eyebrow">Garanti BBVA İK &amp; Yetenek Gelişimi | 2026</span>
+    <h1>Geleceği <em>Yönet</em></h1>
+    <p class="hero-sub">Yüksek potansiyelli lider adayları ve kıdemli uzmanlar için liderlik geçişi, ekip dönüşümü ve insan + yapay zeka takımlarına liderlik programı.</p>
+
+    <div class="hero-meta">
+      <div class="chip"><small>Yer</small><b>Kampüs Garanti BBVA</b>İstanbul · Yüz Yüze</div>
+      <div class="chip"><small>Format</small><b>2 Gün Eğitim</b>09:00 – 16:00</div>
+      <div class="chip"><small>Capstone</small><b>+ 1½ Gün Case Lab</b>Jüri sunumuyla</div>
+      <div class="chip"><small>Denge</small><b>~%40 Anlatım</b>%60 Atölye</div>
+    </div>
+
+    <blockquote class="quote">
+      "Yapay zeka tek başına insanların yerini almayacak; ancak yapay zekayı etkin kullanan liderler ve takımlar, kullanmayanların yerini alacak. Kıt olan şey teknoloji değil; belirsizlikte ekibe yön veren muhakeme, değişim dayanıklılığı ve adaptif liderliktir."
+    </blockquote>
+  </div>
+  <div class="hero-bottom">
+    <div class="wrap">
+      <span><b>Omurga:</b> Hisset → Dene → Kalıcılaştır</span>
+      <span><b>Vaka:</b> DBS Bank — AI Journey</span>
+      <span><b>Kahraman:</b> Elif · Yeni Yönetici</span>
+    </div>
+  </div>
+</header>
+
+<!-- NEDEN -->
+<section id="neden" class="alt">
+  <div class="wrap">
+    <div class="sec-label">Neden Bu Program?</div>
+    <h2>Uzmanlıktan Liderliğe: En Riskli Geçiş</h2>
+    <p class="lead">Masalarınızda ChatGPT Enterprise lisansları, sistemlerinizde 200'den fazla yapay zeka eğitimi bulunuyor. Ancak dönüşüm yalnızca bir teknoloji yatırımı değildir. Bu program sizi "en iyi işi yapan uzman" kimliğinden, "belirsizlikte ekibe yön veren ve insan + yapay zeka takımlarını orkestre eden lider" kimliğine taşımak için tasarlandı.</p>
+    <div class="grid3">
+      <div class="card">
+        <div class="stat">%60</div>
+        <h3>Yeni Yönetici Riski</h3>
+        <p>CEB/Gartner verilerine göre yeni yöneticilerin %60'ı, uzmanlık alışkanlıklarını bırakamadığı için ilk 24 ayda beklentinin altında kalıyor.</p>
+      </div>
+      <div class="card">
+        <div class="stat">%70</div>
+        <h3>Engel Teknoloji Değil</h3>
+        <p>Yapay zeka projelerindeki zorlukların %70'i teknoloji değil, insan ve süreç kaynaklı — ekibin direnci ve eski çalışma alışkanlıkları. Sorumluluk İK'nın değil, ekibe doğrudan liderlik eden yöneticinin işidir.</p>
+      </div>
+      <div class="card">
+        <div class="stat tl">Değer</div>
+        <h3>= YZ Hızı × İnsan Muhakemesi</h3>
+        <p>Yöneticinin işi hangi adımın makineye, hangisinin insana, hangisinin ortak olduğunu ayırt etmek ve insan denetimini tasarlamaktır.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HİKAYE -->
+<section id="hikaye">
+  <div class="wrap">
+    <div class="sec-label">Hikâye Omurgası</div>
+    <h2>Kahramanımız: Elif</h2>
+    <p class="lead">İki gün boyunca ortak vaka evrenimizde, ticari bankacılıkta yeni yönetici olan Elif'in 9 kişilik ekibine liderlik edeceksiniz. Ortak kahraman, kendi vakanızı açmadan önce güvenli bir prova alanı ve masalar arasında tek bir dil sağlar.</p>
+    <div class="story">
+      <div class="persona">
+        <div class="avatar">E</div>
+        <h3>Elif</h3>
+        <div class="role">7 yıllık Garanti BBVA çalışanı · Yeni Yönetici</div>
+        <p>Ticari bankacılıkta ekibin en iyi analistiydi. Altı hafta önce 9 kişilik ekibin yöneticisi oldu. Süreçlerinin bir bölümü yapay zeka ile yeniden tasarlanıyor; yöneticisi 90 gün içinde ölçülebilir bir iyileşme bekliyor.</p>
+        <div class="drawer">
+          <h4>Çekmecesindeki Üç Soru</h4>
+          <ul>
+            <li>"Ben yapmazsam olmaz mı?"</li>
+            <li>"Ekibime gelecek hakkında ne söyleyeceğim — onları nasıl hazırlayacağım?"</li>
+            <li>"Hızlanırken neyi riske atıyorum?"</li>
+          </ul>
+        </div>
+      </div>
+      <div class="cast">
+        <div class="cast-card"><span class="cast-dot" style="background:var(--navy)"></span>
+          <div><b>Mehmet · 18 Yıl</b><p>"Bunu üçüncü kez yaşıyoruz." Deneyimli çalışan direnci; ikna edilmesi hikâyenin dönüm noktası.</p></div>
+        </div>
+        <div class="cast-card"><span class="cast-dot" style="background:var(--blue)"></span>
+          <div><b>Selin · Eski Akranı</b><p>Aynı pozisyona adaydı. İlk geri bildirim görüşmesi burada zorlaşıyor.</p></div>
+        </div>
+        <div class="cast-card"><span class="cast-dot" style="background:var(--teal)"></span>
+          <div><b>Can · 2 Yıl</b><p>Her işte ChatGPT kullanıyor, çıktıyı doğrulamıyor. Hız ile muhakeme gerilimi.</p></div>
+        </div>
+        <div class="cast-card"><span class="cast-dot" style="background:#0B9B9C"></span>
+          <div><b>Zeynep · Uzaktan</b><p>Toplantılarda sessiz. Görünürlük ve psikolojik güvenlik testi.</p></div>
+        </div>
+        <div class="cast-card"><span class="cast-dot" style="background:var(--dark)"></span>
+          <div><b>+ 5 Kişi · Sessiz Çoğunluk</b><p>Değişimin gerçek sonucunu onların davranışı belirliyor.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6 PERDE -->
+<section id="yolculuk" class="alt">
+  <div class="wrap">
+    <div class="sec-label">Program Akışı</div>
+    <h2>Altı Perdelik Liderlik Yolculuğu</h2>
+    <p class="lead">Her perde bir çıkmazla açılır, bir atölyeyle çözülür, somut bir çıktıyla kapanır. Her atölye iki turludur: önce Elif'in vakasında prova yapılır, sonra aynı şablon kendi ekibinize uygulanır — kimse boş oturmaz, gizlilik korunur (isim yok, rol var).</p>
+
+    <div class="spine-legend">
+      <span class="spine-tag sp1">Hisset · Gün 1 (Perde 0–3)</span>
+      <span class="spine-tag sp2">Dene · Gün 2 (Perde 4–5)</span>
+      <span class="spine-tag sp3">Kalıcılaştır · Case Lab (Perde 6)</span>
+    </div>
+
+    <div class="timeline">
+      <div class="perde">
+        <div class="perde-card">
+          <div class="perde-top"><span class="perde-num">Perde 0 · Atama</span><h3>Koltuk Değişti</h3></div>
+          <p class="perde-q">"Koltuk değişti."</p>
+          <p>Elif'in üç sorusu masaya konur; her katılımcı kendi üç sorusunu yazar.</p>
+          <span class="out">Kendi üç sorum</span>
+        </div>
+      </div>
+      <div class="perde">
+        <div class="perde-card">
+          <div class="perde-top"><span class="perde-num">Perde 1 · Kimlik</span><h3>Uzmanlıktan Liderliğe Geçiş</h3></div>
+          <p class="perde-q">"Ben yapsam daha hızlı olur."</p>
+          <p>"Ben yapsam daha hızlı olur" tuzağını yıkmak; Heifetz Adaptif Liderlik ile teknik sorunları ve adaptif meydan okumaları ayrıştırmak. Atölye: Liderlik Geçiş Röntgeni — Devam Et / Bırak / Başla.</p>
+          <span class="out">Geçiş kartı: Bırakacağım 2 iş + Başlayacağım 2 liderlik davranışı</span>
+        </div>
+      </div>
+      <div class="perde">
+        <div class="perde-card">
+          <div class="perde-top"><span class="perde-num">Perde 2 · Oyun Alanı</span><h3>Bank 4.0 ve 2030–2035 Mega Trendleri</h3></div>
+          <p class="perde-q">Can: "3 yıl sonra bu işi biz mi yapacağız?"</p>
+          <p>Bankacılık artık gidilen bir yer değil, yaşamın içine gömülü bir deneyim. 7 mega trend bu kez yönetici lensiyle okunur: bu dönüşüm ekibimin işini, rollerini ve önceliklerini nasıl değiştirir? Atölye: Trendden Ekibe Etki Haritası.</p>
+          <span class="out">Ekip etki haritası + 2029 organizasyon şeması taslağı + ilk ekip toplantısına 1 gündem</span>
+        </div>
+      </div>
+      <div class="perde">
+        <div class="perde-card">
+          <div class="perde-top"><span class="perde-num">Perde 3 · Direnç</span><h3>Değişime Direnç Simülasyonu</h3></div>
+          <p class="perde-q">Mehmet: "Bunu üçüncü kez yaşıyoruz."</p>
+          <p>Heifetz ile teşhis, Bass'ın Dönüştürücü Liderlik (4I) modeliyle yanıt tasarımı ve rol oyunu: kıdemli ve kaygılı ekip üyeleriyle zor konuşma provaları, gözlemci geri bildirimiyle.</p>
+          <span class="out">Provası yapılmış değişim konuşması + bu hafta yapacağım ilk 3 davranış</span>
+        </div>
+      </div>
+      <div class="perde dene">
+        <div class="perde-card">
+          <div class="perde-top"><span class="perde-num">Perde 4 · Muhakeme</span><h3>İnsan + Yapay Zeka İş Birliğiyle Değer Üretmek</h3></div>
+          <p class="perde-q">Yöneticisi: "Bu süreci baştan tasarlasan?"</p>
+          <p>DBS mantığıyla bir bankacılık yolculuğunu sıfırdan AI-native tasarlamak: özü bul, beyaz sayfa, sınav ve guardrail, ölç ve devret. Çapa: GenAI düşünce ortağıdır, karar verici değildir. Atölye: Beyaz Sayfa Sprinti I–II.</p>
+          <span class="out">Beyaz sayfa kanvası + 3 guardrail + north star metrik + "asla devretmeyeceğim karar"</span>
+        </div>
+      </div>
+      <div class="perde dene">
+        <div class="perde-card">
+          <div class="perde-top"><span class="perde-num">Perde 5 · Kalıcılık</span><h3>Geleceğin Ekibini Kurmak ve Değişimi Kalıcılaştırmak</h3></div>
+          <p class="perde-q">Üçüncü hafta sessizliği</p>
+          <p>70/20/10 kuralıyla ekip gelişim planı, tükenmişliği önleyen sürdürülebilir tempo ve iyi olma hali. Tüm çıktılar tek bir liderlik sistemine bağlanır.</p>
+          <span class="out">30-60-90 Günlük Liderlik Playbook'u + Hesap Verebilirlik Eşi</span>
+        </div>
+      </div>
+      <div class="perde lab">
+        <div class="perde-card">
+          <div class="perde-top"><span class="perde-num">Perde 6 · Case Lab (1½ Gün)</span><h3>Gerçek Hayat Uygulaması: DBS Bank — AI Journey</h3></div>
+          <p class="perde-q">"Ekibimi bu dönüşümde nasıl yönlendiririm?"</p>
+          <p>Kredilendirme sürecini yapay zeka ile yeniden tasarlayarak manuel işi %85 azaltan liderlik vakası. Case Lab'de koltuğunuz CEO değil, süreci otomatikleşen ekibin lideridir: ekipteki kaygıyı yönetmek ve yeni değer yaratmak. Son 30 dakika: alınan kararlar kendi biriminizin gerçek bağlamına indirgenir ve jüriye sunulur.</p>
+          <span class="out">Değişim liderliği planı + jüri sunumu</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AKIS -->
+<section id="akis">
+  <div class="wrap">
+    <div class="sec-label">Gün Gün Akış</div>
+    <h2>İki Günün Programı</h2>
+    <p class="lead">Gün 1 kendini ve oyunu okumaya, Gün 2 ekibinizle geleceği inşa etmeye ayrılmıştır. Atölye ağırlığı programın genelinde bilinçli olarak yüksektir.</p>
+
+    <div class="day-tabs" role="tablist">
+      <button class="day-tab active" id="tab1" role="tab" aria-selected="true" aria-controls="day1" onclick="showDay(1)">Gün 1 · Kendini ve Oyunu Okumak</button>
+      <button class="day-tab" id="tab2" role="tab" aria-selected="false" aria-controls="day2" onclick="showDay(2)">Gün 2 · Ekibinle Geleceği İnşa Etmek</button>
+    </div>
+
+    <div id="day1" role="tabpanel" aria-labelledby="tab1">
+      <table class="agenda">
+        <thead><tr><th>Saat</th><th>Tür</th><th>Oturum</th><th>Hikâyedeki Yeri</th></tr></thead>
+        <tbody>
+          <tr><td>09:30–09:45</td><td><span class="tag t-acilis">Açılış</span></td><td>Tanışma ve beklentiler + Elif'in atanma anı</td><td>Perde 0 · Koltuk değişti</td></tr>
+          <tr><td>09:45–10:25</td><td><span class="tag t-anlatim">Anlatım</span></td><td>Bölüm 1 · Uzmanlıktan Liderliğe: BANI Çağında Yönetici Olmak</td><td>Heifetz — Adaptif Liderlik</td></tr>
+          <tr><td>10:25–11:25</td><td><span class="tag t-atolye">Atölye</span></td><td>Liderlik Geçiş Röntgeni — Devam Et / Bırak / Başla</td><td>Perde 1 · "Ben yapsam daha hızlı"</td></tr>
+          <tr><td>11:25–11:40</td><td><span class="tag t-mola">Ara</span></td><td>Kahve</td><td>—</td></tr>
+          <tr><td>11:40–12:15</td><td><span class="tag t-anlatim">Anlatım</span></td><td>Bölüm 2 · Bank 4.0: Yeni Oyun Alanını Yönetici Lensiyle Okumak</td><td>7 Mega Trend ve Bank 4.0 odağı</td></tr>
+          <tr><td>12:15–13:00</td><td><span class="tag t-mola">Öğle</span></td><td>Öğle arası</td><td>—</td></tr>
+          <tr><td>13:00–13:55</td><td><span class="tag t-atolye">Atölye</span></td><td>Mega Trendden Ekibe ve Gelecekteki Rolümüze + 2030 manşeti</td><td>Perde 2 · "3 yıl sonra bu iş bizde mi?"</td></tr>
+          <tr><td>13:55–14:45</td><td><span class="tag t-anlatim">Anlatım</span></td><td>Bölüm 3 · Dönüşüme Liderlik: Transformatif + Adaptif Müdahale</td><td>Bass'ın dönüştürücü liderlik modelinin dört boyutu</td></tr>
+          <tr><td>14:45–15:00</td><td><span class="tag t-mola">Ara</span></td><td>Kahve</td><td>—</td></tr>
+          <tr><td>15:00–16:30</td><td><span class="tag t-atolye">Atölye</span></td><td>Değişim Simülasyonu — rol oyunu + gözlemci geri bildirimi</td><td>Perde 3 · "Bunu 3. kez yaşıyoruz"</td></tr>
+        </tbody>
+      </table>
+      <p class="agenda-note">Gün 1 dengesi: %45 anlatım / %55 atölye</p>
+    </div>
+
+    <div id="day2" role="tabpanel" aria-labelledby="tab2" class="hidden">
+      <table class="agenda">
+        <thead><tr><th>Saat</th><th>Tür</th><th>Oturum</th><th>Hikâyedeki Yeri</th></tr></thead>
+        <tbody>
+          <tr><td>09:30–09:40</td><td><span class="tag t-acilis">Açılış</span></td><td>Gece köprüsü: dün provası yapılan konuşmadan kalan tek cümle</td><td>Perde 3'ten devir</td></tr>
+          <tr><td>09:40–10:30</td><td><span class="tag t-anlatim">Anlatım</span></td><td>Bölüm 4 · İnsan + Yapay Zeka İş Birliğiyle Değer Üretmek — muhakeme + DigComp 3.0 özeti</td><td>İK beklentisinin merkezi</td></tr>
+          <tr><td>10:30–10:45</td><td><span class="tag t-mola">Ara</span></td><td>Kahve</td><td>—</td></tr>
+          <tr><td>10:45–12:00</td><td><span class="tag t-atolye">Atölye</span></td><td>Beyaz Sayfa Sprinti I — yolculuğun özü ve sıfırdan tasarım</td><td>Perde 4 · "Baştan tasarlasan?"</td></tr>
+          <tr><td>12:00–12:45</td><td><span class="tag t-mola">Öğle</span></td><td>Öğle arası</td><td>—</td></tr>
+          <tr><td>12:45–13:30</td><td><span class="tag t-atolye">Atölye</span></td><td>Beyaz Sayfa Sprinti II — sınav, guardrail, north star, galeri</td><td>Sorumlu kullanım kontrolü</td></tr>
+          <tr><td>13:30–14:10</td><td><span class="tag t-anlatim">Anlatım</span></td><td>Bölüm 5 · Geleceğin Ekibini Kurmak ve Değişimi Kalıcılaştırmak</td><td>70/20/10 ↔ Kişisel Aksiyon Planı Taslağı</td></tr>
+          <tr><td>14:10–14:25</td><td><span class="tag t-mola">Ara</span></td><td>Kahve</td><td>—</td></tr>
+          <tr><td>14:25–15:25</td><td><span class="tag t-atolye">Atölye</span></td><td>30-60-90 Liderlik Yol Haritam</td><td>Perde 5 · Üçüncü hafta sessizliği</td></tr>
+          <tr><td>15:25–16:10</td><td><span class="tag t-atolye">Atölye</span></td><td>Liderlik Playbook'u + hesap verebilirlik eşi eşleştirmesi</td><td>Hikâyenin katılımcıya devri</td></tr>
+          <tr><td>16:10–16:30</td><td><span class="tag t-acilis">Kapanış</span></td><td>Taahhüt turu ve Case Lab brifingi</td><td>Perde 6'ya geçiş</td></tr>
+        </tbody>
+      </table>
+      <p class="agenda-note">Program toplamı: %40-45 anlatım, %55-60 atölye.</p>
+    </div>
+  </div>
+</section>
+
+<!-- HAZIRLIK -->
+<section id="hazirlik" class="alt">
+  <div class="wrap">
+    <div class="sec-label">Eğitim Öncesi Hazırlıklar</div>
+    <h2>Sınıfa Gelmeden Önce</h2>
+    <p class="lead">Atölye ve vaka tartışmalarından en yüksek verimi alabilmeniz için sınıfa gelmeden önce aşağıdaki hazırlıkları tamamlamanızı rica ederiz.</p>
+    <div class="prep-grid">
+      <div class="prep">
+        <h3>📖 1 · Ön Okuma Slide Seti</h3>
+        <ul>
+          <li><b>Geleceği Yönet Ön Okuma Paketi (ekte):</b> Ekip rollerinin nasıl dönüştüğünü gösteren <b>WEF Future of Jobs 2025</b> raporu ve liderin 3 kasını (Sezme, Yeniden Kurgulama, Kalıcılaştırma) anlatan <b>HBR Değişim Dayanıklılığı</b> makale özetini içeren slide setini inceleyiniz.</li>
+        </ul>
+        <p class="mini">İki kaynak, tek vizyon: sınıfa gelmeden önce ekibin oyun alanını (WEF) ve dönüşüm liderliğini (HBR) kavrayın.</p>
+      </div>
+      <div class="prep">
+        <h3>🎬 2 · İzlenmesi Gereken Video (~30 dk)</h3>
+        <ul>
+          <li><b>HBR Video Röportajı:</b> "AI Won't Replace Humans—But Humans With AI Will Replace Humans Without AI" — Konuk: Prof. Karim Lakhani (Harvard Business School AI Enstitüsü Kurucusu). Türkçe altyazı seçebilirsiniz.</li>
+          <li><b>İzleme Linki:</b> <a href="https://youtu.be/kNGr99LoTsg" target="_blank" rel="noopener">youtu.be/kNGr99LoTsg</a></li>
+          <li><b>İzleme Odağı:</b> Değişimin %70'inin teknoloji değil organizasyonel ve yönetsel kaslar olduğu [08:09]; deneme yanılma alanları (sandbox) kurmanın ve insan muhakemesinin önemi [22:55, 25:47].</li>
+        </ul>
+      </div>
+      <div class="prep">
+        <h3>✏️ 3 · Çekmece Soruları (Notlarınızla Gelin)</h3>
+        <ol>
+          <li><b>Liderlik Zayıf Kası:</b> Sezme, Yeniden Kurgulama, Kalıcılaştırma… Ekibimde ve bende şu an en çok zorlanan kas hangisi?</li>
+          <li><b>Kimlik Çıkmazı:</b> "Ben yapsam daha hızlı olur" diyerek delege etmekte en çok zorlandığım rutin uzmanlık işim nedir?</li>
+          <li><b>Ekip Dönüşümü:</b> Ekibimde Mehmet (dirençli kıdemli) veya Can (doğrulamayan hızlı) profilinde çalışanlar var mı, onlarla nasıl bir dil kurmalıyım?</li>
+        </ol>
+      </div>
+      <div class="prep">
+        <h3>💻 4 · Yanınızda Getirin / Kontrol Edin</h3>
+        <ul>
+          <li><b>Dizüstü bilgisayar &amp; mouse:</b> Eğitim yoğun şablon, simülasyon ve kanvas çalışmaları içermektedir.</li>
+          <li><b>ChatGPT Enterprise / Kurumsal AI Asistanı (opsiyonel):</b> Kurum içi hesabınızın açık ve aktif olduğunu önceden kontrol ediniz.</li>
+          <li><b>Mural / Dijital Çalışma Alanı:</b> Grup etkileşimleri ve kanvaslar için sınıfta kullanılacaktır.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KAZANIM -->
+<section id="kazanim">
+  <div class="wrap">
+    <div class="sec-label">Bu Program Size ve Ekibinize Ne Kazandırır?</div>
+    <h2>Sınıftan Çıkarken Elinizde Olacaklar</h2>
+    <p class="lead">Gün sonunda her katılımcı şu yetkinlikle sınıftan ayrılacak: <em>"Ekibimin önüne hangi teknolojik dalga veya belirsizlik gelirse gelsin; teknik sorun ile adaptif meydan okumayı ayrıştırabilir, insan muhakemesi ile yapay zeka hızını birleştirerek ekibimi geleceğe taşıyabilirim."</em></p>
+    <div class="grid3">
+      <div class="card">
+        <h3>🧭 Uzmanlıktan Liderliğe Sağlıklı Geçiş</h3>
+        <p>Mikro yönetim tuzaklarından sıyrılarak işi yapan değil, ekibi belirsizlikte hizalayan lider refleksini kazanmak.</p>
+      </div>
+      <div class="card">
+        <h3>🗣️ Adaptif Liderlik &amp; Zor Konuşmalar</h3>
+        <p>Heifetz ve Bass modelleriyle değişime karşı direnci bastırmak yerine anlamlandırıp güvenli alanda çözmek.</p>
+      </div>
+      <div class="card">
+        <h3>⚙️ AI Destekli Süreç Yeniden Tasarımı</h3>
+        <p>Rutin süreçleri sıfırdan AI-native kurgulamak, insan denetim noktalarını (guardrail) doğru yerleştirmek.</p>
+      </div>
+      <div class="card">
+        <h3>🧩 2030 Ekip Beceri Mimarisi</h3>
+        <p>Ekipteki rollerin dönüşümünü WEF verileriyle okuyup 70/20/10 gelişim planına dökmek.</p>
+      </div>
+      <div class="card">
+        <h3>📘 30-60-90 Günlük Liderlik Playbook'u</h3>
+        <p>Sınıfta öğrenilenleri ilk iş gününden itibaren uygulanabilir ekip ritüellerine dönüştürmek.</p>
+      </div>
+      <div class="card">
+        <h3>🤝 Hesap Verebilirlik Eşi</h3>
+        <p>Yol haritanızı yalnız yürümezsiniz: eğitim sonunda eşleştiğiniz yönetici arkadaşınızla ilerlemenizi birlikte takip edersiniz.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p class="closing">"Bugün attığınız adımlar, yarının liderliğine yön veriyor. Sınıfta değişim simülasyonunu prova etmeye ve ekibinizin geleceğini tasarlamaya hazır gelin."</p>
+    <p>Hazırlık sürecinde her türlü sorunuz için bizimle iletişime geçebilirsiniz.<br>Dönüştürücü, ilham verici ve bol uygulamalı bir liderlik yolculuğunda buluşmak üzere!</p>
+    <p class="sig">Saygılarımla, Ali Rıza Küçük<br>Girişimci Liderlik ve Dijital Dönüşüm Danışmanı · MCT<br>Öğretim Görevlisi — Amsterdam Technology MBA Programı</p>
+    <p class="fine">İnsan Kaynakları ve Yetenek Gelişimi | 2026 · Bu sayfa yalnızca bilgilendirme amaçlıdır.</p>
+  </div>
+</footer>
+
+<script>
+function showDay(n){
+  var d1=document.getElementById('day1'),d2=document.getElementById('day2');
+  var t1=document.getElementById('tab1'),t2=document.getElementById('tab2');
+  var one = n===1;
+  d1.classList.toggle('hidden',!one);
+  d2.classList.toggle('hidden',one);
+  t1.classList.toggle('active',one);
+  t2.classList.toggle('active',!one);
+  t1.setAttribute('aria-selected',one);
+  t2.setAttribute('aria-selected',!one);
+}
+</script>
+</body>
+</html>
